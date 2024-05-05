@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'lumanisomo';
+    src: url('../public/Lumanosimo-Regular.ttf');
+}
