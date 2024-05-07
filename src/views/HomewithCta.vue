@@ -116,11 +116,18 @@
                 </div>
             </div>
             <div class="products-">
-                <ProductCard />
+                <!-- <ProductCard /> -->
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import PocketBase from 'pocketbase'
+
+    const pb = new PocketBase('http://127.0.0.1:8090');
+
+</script>
 
 <style scoped>
 .cta-bg-img {

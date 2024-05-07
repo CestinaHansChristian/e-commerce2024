@@ -1,34 +1,52 @@
 <template>
     <div>
-        <div class="text-center h-72 m-1">
-            <div class="relative ">
-                <div class="grid relative align-middle transaction-heading bg-slate-300 py-1 rounded-t-xl">
-                    <h1 class="sticky top-0">
-                        Transaction
-                    </h1>
-                </div>
-                <div class="transaction-body border-2 border-black ">
-                    <div class="scrollbar overflow-y-scroll grid-rows-2 h-60">
-                        <div class="receipt-info gap-2">
-                            <div class="grid border-2 border-black m-1">
-                                <div class="order-detail grid grid-cols-2 justify-center">
-                                    <div class="transaction-id border-2 border-black">
-                                        <img src="" alt="" class="h-40 w-40">
+        <div class="receipt-info gap-y-2">
+            <div class=" m-1 bg-neutral-400 rounded-md" v-for="(record, index) in records" :key="record.index">
+                <div class="order-detail grid">
+                    <div class="card">
+                        <div class="card grid">
+                            <div class="card-wrapper grid grid-row-5 gap-1 m-3 bg-neutral">
+                                <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-t-lg">
+                                    <div class="heading">
+                                        order id:
                                     </div>
-                                    <div class=" transaction-number grid grid-rows-3 justify-center border-2 border-black">
-                                        <div class="prod-name">
-                                            sample name
-                                        </div>
-                                        <div class="prod-total">
-                                            1000
-                                        </div>
-                                        <div class="to-delivered">
-                                            Gcash
-                                        </div>
+                                    <div class="heading">
+                                        {{ record.id }}
                                     </div>
                                 </div>
+                                <div class="card-heading grid grid-cols-2 bg-slate-200 ">
+                                    <div class="heading">
+                                        To pay:
+                                    </div>
+                                    <div class="heading">
+                                        ₱{{ record.transac_total_price }}
+                                    </div>
+                                </div>
+                                <div class="card-heading grid grid-cols-2 bg-slate-200">
+                                    <div class="heading">
+                                        Paid via:
+                                    </div>
+                                    <div class="heading">
+                                        {{ record.transac_mode_of_payment }}
+                                    </div>
+                                </div>
+                                <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-b-lg">
+                                    <div class="heading">
+                                        Drop point:
+                                    </div>
+                                    <div class="heading">
+                                        Landmark
+                                    </div>
+                                </div>
+                                <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-b-lg">
+                                    <!-- <div class="heading">
+                                        Phone number
+                                    </div>
+                                    <div class="heading">
+                                        {{ record.phone_num }}
+                                    </div> -->
+                                </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -37,7 +55,22 @@
     </div>
 </template>
 <script>
-    export default {
+    import PocketBase from 'pocketbase'
 
+    const pb = new PocketBase('http://127.0.0.1:8090');
+
+    const transactionList = await pb.collection('transaction').getFullList({
+        filter: pb.filter(`user_transac_id.id ~ "${pb.authStore.model.id}"`),
+    })
+
+    // console.log(pbtoken);
+    console.log(transactionList);
+    // console.log(`model id: ${pb.authStore.model.id}`);
+    export default {
+        data() {
+            return {
+                records: transactionList,
+            }
+        },
     }
 </script>

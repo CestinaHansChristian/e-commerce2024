@@ -17,7 +17,7 @@
                                 <div class="heading-container sticky top-0">
                                     <h1 class="item-heading  text-center text-slate-100 font-semibold tracking-wider bg-amber-600 rounded-t-md shadow-sm shadow-amber-600">Product List</h1>
                                 </div>
-                                <div class="flex card-container shadow-md shadow-lime-700 rounded-b-lg m-2" >
+                                <div class="flex card-container rounded-b-lg m-2 " >
                                     <ProductCard :inc_stock="decrease_stock" :dec_stock="increase_stock" @product_order="pass_to_cart" :display_stock="order_price" :productProp="product_list" />
                                 </div>
                             </div>
@@ -27,14 +27,30 @@
                                 <div class="grid cart-container">
                                     <div class="grid grid-rows-1 shopping-cart-list bg-slate-300 rounded-md">
                                         <h2 class="text-center font-style-format bg-slate-100 m-1">Your Cart</h2>
-                                        <div class="shopping-list grid mx-2 h-60 space-y-2 m-2 shadow-md shadow-zinc-600 rounded-lg pt-1">
+                                        <div class="shopping-list grid mx-2 h-60 space-y-2 m-2 shadow-md shadow-zinc-600 rounded-lg">
                                             <Cart @to_check_out="total_price_pass" :display_order="order_price" :order_desc="order_desc" @price_add="incrementStocks" @price_decrease="decrementStocks"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="grid h-72">
+                                <div class="text-center h-72 m-1">
+                                    <div class="relative ">
+                                        <div class="grid relative align-middle transaction-heading bg-slate-300 py-1 rounded-t-xl">
+                                            <h1 class="sticky top-0 font-semibold">
+                                                Your Transaction History
+                                            </h1>
+                                        </div>
+                                        <div class="transaction-body bg-slate-200 ">
+                                            <div class="scrollbar overflow-y-scroll grid-rows-2 h-60">
+                                                <Transaction />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <Transaction />
                                 <Transaction />
+                                <Transaction /> -->
                             </div>
                         </div>
                     </div>
@@ -63,7 +79,7 @@
                 console.log('products',id.prod_stock);
             },
             total_price_pass(total) {
-                console.log(total);
+                this.checkout_to_pay_total = total
             },
             incrementStocks(stockNumAdd) {
                 this.decrease_stock = stockNumAdd
@@ -73,20 +89,19 @@
                 this.increase_stock = this.increase_stock
                 console.log('stocks++' ,stockNumDec);
             }
-
         },
         data() {
             return {
                 order_price: [],
                 order_desc: [],
                 decrease_stock: 0,
-                increase_stock: 0
+                increase_stock: 0,
             }
         },
     }
 </script>
 
-<style scoped>
+<style>
     .font-style-format {
         font-family: 'lumanisomo'
     }

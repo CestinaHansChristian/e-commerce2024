@@ -68,7 +68,9 @@
             async loginUserCred() {
                 try {
                     await pb.collection('users').authWithPassword(this.usernamE,this.passworD)
-                    this.$router.push('/products')
+                    this.$router.push('/products').then(()=>{
+                        location.reload()
+                    })
                     console.log('login',pb.authStore.model.id)
                 } catch (error) {
                     this.failedLogin = !this.failedLogin
