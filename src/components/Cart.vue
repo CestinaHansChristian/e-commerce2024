@@ -2,7 +2,7 @@
     import Checkout from '@/views/Checkout.vue';
 </script>
 <template>
-    <Checkout @close_modal="cancel_payment" :price_to_pay="checkout_to_pay"  v-if="isPaid" />
+    <Checkout @close_modal="cancel_payment" :price_to_pay="checkout_to_pay" :product_update_stock="display_order"  v-if="isPaid" />
     <div class="loop-container grid grid-row-3 relative overflow-y-scroll h-60 rounded-md">
         <div class="grid grid-rows-2 py-2 pb-10 bg-slate-400 gap-y-1">
             <div v-for="(product_cart_item, index) in order_desc" :key="product_cart_item.index" class=" grid grid-cols-2 relative items mx-2 py-4 justify-center bg-neutral-200 p-1 rounded-md">
@@ -48,7 +48,7 @@
         data() {
             return {
                 isPaid: false,
-                item_quantity: 0,
+                prod_id: 0,
                 checkout_to_pay: 0
             }
         },
@@ -59,24 +59,30 @@
             proceedCheckOut(total_price) {
                 this.isPaid = !this.isPaid
                 this.checkout_to_pay = total_price
+
+                // console.log(this.display_order.prod_id);
+                // this.prod_id = display_order.prod_id
+                // console.log(this.prod_id);
                 // this.$emit('to_check_out',total_price)
             },
             cancel_payment(status) {
                 this.isPaid = !this.isPaid
             },
-            addPrice(add_price,index) {
-                this.$emit('price_add',this.order_desc[index].prod_stock = this.order_desc[index].prod_stock - 1)
-                
-                this.display_order.prod_grand_total = parseInt(this.display_order.prod_grand_total) + parseInt(add_price)
-                
-                console.log(this.order_desc[index].prod_stock);
-            },
-            decreasePrice(dec_price,index) {
-                this.$emit('price_decrease',this.order_desc[index].prod_stock = this.order_desc[index].prod_stock + 1)
 
-                this.display_order.prod_grand_total = parseInt(this.display_order.prod_grand_total) - parseInt(dec_price)
-                console.log(this.order_desc[index].prod_stock);
-            }
+
+            // addPrice(add_price,index) {
+            //     this.$emit('price_add',this.order_desc[index].prod_stock = this.order_desc[index].prod_stock - 1)
+                
+            //     this.display_order.prod_grand_total = parseInt(this.display_order.prod_grand_total) + parseInt(add_price)
+                
+            //     console.log(this.order_desc[index].prod_stock);
+            // },
+            // decreasePrice(dec_price,index) {
+            //     this.$emit('price_decrease',this.order_desc[index].prod_stock = this.order_desc[index].prod_stock + 1)
+
+            //     this.display_order.prod_grand_total = parseInt(this.display_order.prod_grand_total) - parseInt(dec_price)
+            //     console.log(this.order_desc[index].prod_stock);
+            // }
         },
         
     }

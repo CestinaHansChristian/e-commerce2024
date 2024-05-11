@@ -106,6 +106,7 @@ let count = 1
                     'prod_index': index
                 }
 
+                // console.log(ordered_product.prod_id);
                 // console.log('prodCard',prodCardPrice);
                 // this.ordered_prod_card.push(ordered_product)
                 this.$emit('product_order',ordered_product)

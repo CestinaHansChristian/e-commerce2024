@@ -59,17 +59,28 @@
 
     const pb = new PocketBase('http://127.0.0.1:8090');
 
-    const transactionList = await pb.collection('transaction').getFullList({
-        filter: pb.filter(`user_transac_id.id ~ "${pb.authStore.model.id}"`),
-    })
+    let transac_list = null
 
-    // console.log(pbtoken);
-    console.log(transactionList);
+    if(pb.authStore.isValid){
+            const transactionList = await pb.collection('transaction').getFullList({
+            filter: `user_transac_id.id ~ "${pb.authStore.model.id}"`,
+        })
+        transac_list = transactionList
+    } else {
+        const transactionList = {
+            'user_transac_id': null,
+            'transac_mode_of_payment': null,
+            'transac_total_price': null
+        }
+        transac_list = transactionList
+    }
+
+    // console.log(transactionList);
     // console.log(`model id: ${pb.authStore.model.id}`);
     export default {
         data() {
             return {
-                records: transactionList,
+                records: transac_list,
             }
         },
     }

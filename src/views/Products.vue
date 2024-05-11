@@ -18,7 +18,7 @@
                                     <h1 class="item-heading  text-center text-slate-100 font-semibold tracking-wider bg-amber-600 rounded-t-md shadow-sm shadow-amber-600">Product List</h1>
                                 </div>
                                 <div class="flex card-container rounded-b-lg m-2 " >
-                                    <ProductCard :inc_stock="decrease_stock" :dec_stock="increase_stock" @product_order="pass_to_cart" :display_stock="order_price" :productProp="product_list" />
+                                    <ProductCard  @product_order="pass_to_cart" :display_stock="order_price" :productProp="product_list" />
                                 </div>
                             </div>
                         </div>
@@ -76,17 +76,17 @@
             pass_to_cart(id) {
                 this.order_price = id
                 this.order_desc.push(id)
-                console.log('products',id.prod_stock);
+                this.prod_stock_qty = id.prod_id
             },
             total_price_pass(total) {
                 this.checkout_to_pay_total = total
             },
             incrementStocks(stockNumAdd) {
-                this.decrease_stock = stockNumAdd
+                // this.decrease_stock = stockNumAdd
                 console.log('stocks--' ,stockNumAdd);
             },
             decrementStocks(stockNumDec) {
-                this.increase_stock = this.increase_stock
+                // this.increase_stock = this.increase_stock
                 console.log('stocks++' ,stockNumDec);
             }
         },
@@ -94,8 +94,7 @@
             return {
                 order_price: [],
                 order_desc: [],
-                decrease_stock: 0,
-                increase_stock: 0,
+                prod_stock_qty: 0,
             }
         },
     }

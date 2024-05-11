@@ -57,15 +57,23 @@
     </div>
 </template>
 <script>
+    import PocketBase from 'pocketbase';
+
+    const pb = new PocketBase('http://127.0.0.1:8090');
+
     export default {
         emits: ['close_modal'],
         props: {
-            price_to_pay: Number
+            price_to_pay: Number,
+            product_decrease: Number,
+            product_update_stock: Object
         },
         data() {
             return {
                 secure_payment: this.price_to_pay,
-                paymentMethod: ''
+                paymentMethod: '',
+                stock_prod: this.product_decrease,
+                prod_update: this.product_update_stock
             }
         },
         methods: {
@@ -73,9 +81,24 @@
                 console.log('modal closed');
                 this.$emit('close_modal',true)
             },
-            checkOut() {
-                console.log(this.paymentMethod);
-                console.log(this.secure_payment);
+            async checkOut() {
+
+                const data = {
+                    "user_transac_id": pb.authStore.model.id,
+                    "transac_mode_of_payment": this.paymentMethod,
+                    "transac_total_price": this.secure_payment
+                };
+                // console.log(data);
+
+                const prod_stock = {
+                    "product_stocks": this.prod_update.prod_stock
+                };
+                console.log(this.prod_update.prod_id);
+                console.log(this.prod_update.prod_stock);
+
+                await pb.collection('products').update(this.prod_update.prod_id, prod_stock)
+                
+                await pb.collection('transaction').create(data)
                 alert('Order Posted')
                 location.reload()
             }
