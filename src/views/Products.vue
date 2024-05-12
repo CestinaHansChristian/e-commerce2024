@@ -10,14 +10,19 @@
     <div class="h-screen">
         <div class="wrapper">
             <div class="product-container">
+                <div class="greetings-to-user bg-orange-300 mx-3 py-2 text-center m-1 rounded-md border-orange-400 border-2 shadow-inner shadow-orange-400">
+                    <h1 class="font-semibold font-welcome text-slate-800">
+                        Welcome <span class="text-white font-semibold text-xl">{{ logged_in_user.username }}</span>
+                    </h1>
+                </div>
                 <div class="grid-col 1">
                     <div class="content-wrapper grid grid-cols-4 m-2">
                         <div class="product-container-wrapper col-span-3">
                             <div class="product-card-container overflow-auto rounded-lg ms-1">
-                                <div class="heading-container sticky top-0">
+                                <div class="heading-container sticky top-0 grid">
                                     <h1 class="item-heading  text-center text-slate-100 font-semibold tracking-wider bg-amber-600 rounded-t-md shadow-sm shadow-amber-600">Product List</h1>
                                 </div>
-                                <div class="flex card-container rounded-b-lg m-2 " >
+                                <div class="flex card-container rounded-b-lg" >
                                     <ProductCard  @product_order="pass_to_cart" :display_stock="order_price" :productProp="product_list" />
                                 </div>
                             </div>
@@ -68,6 +73,10 @@
 
     const product_list = await pb.collection('products').getFullList()
 
+    const user_logged_in = await pb.collection('users').getOne(pb.authStore.model.id,{
+        expand: 'username'
+    });
+
     // console.log(product_list);
 
     export default {
@@ -95,13 +104,14 @@
                 order_price: [],
                 order_desc: [],
                 prod_stock_qty: 0,
+                logged_in_user: user_logged_in
             }
         },
     }
 </script>
 
 <style>
-    .font-style-format {
+    .font-style-format, .font-welcome {
         font-family: 'lumanisomo'
     }
 

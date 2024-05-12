@@ -7,15 +7,15 @@
                         <div class="card grid">
                             <div class="card-wrapper grid grid-row-5 gap-1 m-3 bg-neutral">
                                 <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-t-lg">
-                                    <div class="heading">
-                                        order id:
+                                    <div class="text-start ps-2 heading-label">
+                                        Order id:
                                     </div>
                                     <div class="heading">
                                         {{ record.id }}
                                     </div>
                                 </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200 ">
-                                    <div class="heading">
+                                    <div class="text-start ps-2 heading-label">
                                         To pay:
                                     </div>
                                     <div class="heading">
@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200">
-                                    <div class="heading">
+                                    <div class="text-start ps-2 heading-label">
                                         Paid via:
                                     </div>
                                     <div class="heading">
@@ -31,11 +31,11 @@
                                     </div>
                                 </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-b-lg">
-                                    <div class="heading">
+                                    <div class="text-start ps-2 heading-label">
                                         Drop point:
                                     </div>
                                     <div class="heading">
-                                        Landmark
+                                        {{ record.transac_drop_point }}
                                     </div>
                                 </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-b-lg">
@@ -85,3 +85,9 @@
         },
     }
 </script>
+
+<style scoped>
+    .heading-label {
+        font-weight: 500;
+    }
+</style>

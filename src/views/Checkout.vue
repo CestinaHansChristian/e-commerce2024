@@ -83,10 +83,16 @@
             },
             async checkOut() {
 
+                const user_loc = await pb.collection('users').getOne(pb.authStore.model.id,{
+                    expand: 'address'
+                });
+
+                // console.log(user_loc);
                 const data = {
                     "user_transac_id": pb.authStore.model.id,
                     "transac_mode_of_payment": this.paymentMethod,
-                    "transac_total_price": this.secure_payment
+                    "transac_total_price": this.secure_payment,
+                    "transac_drop_point": user_loc.address
                 };
                 // console.log(data);
 
