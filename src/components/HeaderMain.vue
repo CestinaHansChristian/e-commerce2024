@@ -52,7 +52,9 @@
         methods: {
             logoutBtn() {
                 pb.authStore.clear()
-                this.$router.push('/')
+                this.$router.push('/').then(()=>{
+                    location.reload()
+                })
                 console.log('logged out');
             }
         },

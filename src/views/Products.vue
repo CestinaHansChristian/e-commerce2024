@@ -73,9 +73,16 @@
 
     const product_list = await pb.collection('products').getFullList()
 
-    const user_logged_in = await pb.collection('users').getOne(pb.authStore.model.id,{
-        expand: 'username'
-    });
+    let userName_logged = ''
+
+    if(pb.authStore.isValid){
+            const user_logged_in = await pb.collection('users').getOne(pb.authStore.model.id,{
+            expand: 'username'
+        });
+        userName_logged = user_logged_in
+    } else {
+        userName_logged = ''
+    }
 
     // console.log(product_list);
 
@@ -104,7 +111,7 @@
                 order_price: [],
                 order_desc: [],
                 prod_stock_qty: 0,
-                logged_in_user: user_logged_in
+                logged_in_user: userName_logged
             }
         },
     }
