@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200 ">
                                     <div class="text-start ps-2 heading-label">
-                                        To pay:
+                                        Total:
                                     </div>
                                     <div class="heading">
                                         ₱{{ record.transac_total_price }}
@@ -70,7 +70,8 @@
         const transactionList = {
             'user_transac_id': null,
             'transac_mode_of_payment': null,
-            'transac_total_price': null
+            'transac_total_price': null,
+            'transac_drop_point': null
         }
         transac_list = transactionList
     }

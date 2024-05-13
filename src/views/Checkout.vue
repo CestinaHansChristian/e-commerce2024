@@ -94,7 +94,7 @@
                     "transac_total_price": this.secure_payment,
                     "transac_drop_point": user_loc.address
                 };
-                // console.log(data);
+                console.log(data);
 
                 const prod_stock = {
                     "product_stocks": this.prod_update.prod_stock
