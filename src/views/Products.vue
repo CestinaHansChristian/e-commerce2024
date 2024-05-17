@@ -67,9 +67,9 @@
 
 <script>
     
-    import PocketBase from 'pocketbase';
-
-    const pb = new PocketBase('http://127.0.0.1:8090');
+    import PocketBase from 'pocketbase'
+    
+    const pb = new PocketBase('https://ecom2024.pockethost.io/')
 
     const product_list = await pb.collection('products').getFullList()
 

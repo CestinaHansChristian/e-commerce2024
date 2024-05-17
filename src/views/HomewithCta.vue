@@ -4,20 +4,36 @@
 </script>
 <template>
     <HeaderMain :loginBtnDisable="true" :createBtnDisable="true" :LogoutBtnDisable="false"/>
-    <div class="m-5">
-        <div class="rounded-lg grid md:grid-rows-2 ">
-            <div class="grid md:grid-rows-1 m-2">
+    <div class="">
+        <div class="rounded-lg grid md:grid-rows-1 ">
+            <div class="grid md:grid-rows-1">
                 <div class=" rounded-lg ">
-                    <div class="cta-bg-img object-cover shadow-md shadow-gray-700 h-svh grid w-full md:h-full justify-center md:w-full">
+                    <div class="cta-bg-img object-cover h-svh grid w-full md:h-full justify-center md:w-full">
                         <div class="flex place-content-center relative grid-cols-2 shadow-xl">
                             <router-link :to="{name: 'login'}" class="flex place-content-center">
-                                <button class="ctaBtn bg-emerald-500 absolute border-2 shadow-2xl shadow-neutral-800 border-emerald-900 top-1/2 p-5 w-60 rounded-2xl font-semibold text-4xl transition ease-linear delay-150 duration-500 hover:bg-green-500 hover:-translate-y-2 hover:text-white">Shop now!</button>    
+                                <button class="ctaBtn bg-emerald-500 absolute border-2 shadow-2xl shadow-neutral-800 border-emerald-900 top-1/2 p-5 w-60 rounded-2xl font-semibold text-4xl hover:-translate-y-1 hover:text-white duration-300 delay-300">Shop now!</button>    
                             </router-link>    
                         </div>
                     </div>
                 </div>
             </div>
             <div class="grid md:grid-rows-2 gap-y-2">
+                <div class="grid grid-row-2 justify-stretch about-container rounded-bl-lg">
+                    <div class="flex wrapper-mission-vision shadow-gray-500 grid-cols-2 gap-x-1 h-auto">
+                        <div class="mission shadow-lg shadow-neutral-400 bg-white m-2 rounded-md  delay-150 duration-500 hover:bg-lime-200">
+                            <div class="content p-2 grid gap-y-2 m-2">
+                                <div class="heading-wrapper flex justify-center">
+                                    <h1 class="font-semibold text-ellipsis">ABOUT US</h1>
+                                </div>
+                                <div class="content lg:text-xl ">
+                                    <p>
+                                        We are a dairy farm that promotes sustainable processes for our products and provide healthy produce at an affordable price! Daily Farm's commitment to providing the people with nutritious dairy produce is our top priority for our customers' satisfaction. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex grid-row-2 justify-stretch about-container rounded-bl-lg ">
                     <div class="flex wrapper-mission-vision shadow-gray-500 grid-cols-2 gap-x-1 h-auto">
                         <div class="mission shadow-lg shadow-neutral-400 bg-white m-2 rounded-md  delay-150 duration-500 hover:bg-lime-200">
@@ -62,7 +78,7 @@
                                     Connect with us
                                 </h1>
                             </div>
-                            <div class="quick-link-grid grid-rows-4 space-y-3 pt-2">
+                            <div class="quick-link-grid grid-rows-4 space-y-3 py-2">
                                 <div class="facebook-link">
                                     <a href="#" class="space-x-2 hover:bg-red-300 p-2 rounded-lg">
                                         <i class="fa-brands fa-facebook"></i>
@@ -115,27 +131,19 @@
                     </div>
                 </div>
             </div>
-            <div class="products-">
-                <!-- <ProductCard /> -->
-            </div>
         </div>
     </div>
 </template>
 
-<script>
-    import PocketBase from 'pocketbase'
-
-    const pb = new PocketBase('http://127.0.0.1:8090');
-
-    console.log(pb.authStore.isValid);
-</script>
 
 <style scoped>
 .cta-bg-img {
-    background-image: url('../../public/cowCTAbg.jpg');
+    background-image: url(/public/cowCTAbg.jpg);
     background-size: cover;
-    background-repeat: round;
-    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    height: 31.8vw;
+    margin: 8vh 0px 8vh 0px;
 }
 
 .location-heading {
@@ -150,4 +158,5 @@
     letter-spacing: 2px;
     line-height: 200%;
 }
+
 </style>

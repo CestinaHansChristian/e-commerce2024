@@ -1,11 +1,17 @@
+<script setup> 
+
+</script>
 <template>
     <div>
         
         <div class="product-card-container">
             
             <div class="grid grid-cols-3">
-                <div class="scrollbar" v-for="(prod_card_details, index) in productDetails" :key="prod_card_details.index" >
-                    <div class="card-container m-2 flex grid-cols-2 rounded-md shadow-md shadow-amber-600 duration-300 delay-200">
+                <div class="scrollbar" v-for="(prod_card_details, index) in productDetails" v-show="new Date() < new Date(prod_card_details.product_exp)" :key="prod_card_details.index" >
+                    <!-- <div class="" >
+                        show
+                    </div> -->
+                    <div v-show="new Date() < new Date(prod_card_details.product_exp)" class="card-container m-2 flex grid-cols-2 rounded-md shadow-md shadow-amber-600 duration-300 delay-200">
                         <div class="grid grid-row-2 ">
                             <!-- {{ prod_card_details.collectionId + '/'+ prod_card_details.id + '/' + prod_card_details.product_img }} -->
                             <div class="card-image bg-slate-200 rounded-t-lg">
@@ -49,6 +55,18 @@
                                         {{ prod_card_details.product_stocks }}
                                     </h1>
                                 </div>
+                                <div class="mx-2 expiration-wrapper grid grid-rows-2">
+                                    <div class="grid text-red-900 font-bold">
+                                        <p>This product will expire on:</p>
+                                    </div>
+                                    <div class="grid">
+                                        <p class="date-container font-mono">
+                                            {{ new Date(prod_card_details.product_exp).getFullYear()}} -
+                                            {{ new Date(prod_card_details.product_exp).getDate() }} -
+                                            {{ new Date(prod_card_details.product_exp).getMonth() + 1 }}
+                                        </p>
+                                    </div>
+                                </div>
                                 <div class="card-controller p-3">
                                     <div class="buttons-function">
                                         <div class="add-to-cart">
@@ -67,6 +85,9 @@
 </template>
 
 <script>
+    import PocketBase from 'pocketbase'
+    const pb = new PocketBase('https://ecom2024.pockethost.io/')
+
 let grandTotal = 0
 let count = 1
     export default {
@@ -83,7 +104,7 @@ let count = 1
             return {
                 // cow: 'http://127.0.0.1:8090/api/files/136m0uq5sta9cyo/pyb9xr0qbcoeejj/nyx_ixs3Kshd75.jpg',
                 productGet: this.productProp,
-                fileUrl: 'http://127.0.0.1:8090/api/files/',
+                fileUrl: 'https://ecom2024.pockethost.io/api/files/',
                 prodStocksLeft: 0,
                 productDetails: this.productProp
             }
