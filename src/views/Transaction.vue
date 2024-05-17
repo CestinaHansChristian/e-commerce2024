@@ -66,6 +66,7 @@
     if(pb.authStore.isValid){
             const transactionList = await pb.collection('transaction').getFullList({
             filter: `user_transac_id.id ~ "${pb.authStore.model.id}"`,
+            sort: '-created'
         })
         transac_list = transactionList
     } else {

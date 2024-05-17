@@ -2,8 +2,8 @@
     <div>
         <teleport to='#modal'>
             <div class="h-screen absolute grid place-content-center w-full">
-                <div class="">
-                    <div class="card bg-slate-400 p-3 grid grid-rows-2 gap-y-2 rounded-lg">
+                <div class="pt-16">
+                    <div class="card bg-slate-400 p-3 grid grid-rows-2 gap-y-2 rounded-lg shadow-md shadow-neutral-700">
                         <h1 class="bg-neutral-300 text-center rounded-md">
                             Confirm your purchase
                         </h1>
