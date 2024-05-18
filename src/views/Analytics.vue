@@ -1,9 +1,24 @@
 <template>
-    <div>
-        <!-- <button></button> -->
-        <div class="h-screen grid bg-neutral-200">
-            <div class="report-generated">
-                <Bar :data="data" :options='options'/>
+    <div class="">
+        <div class="h-screen grid bg-neutral-300 pb-5">
+            <div class="report-generated grid grid-cols-2">
+                <div class="bar-container grid place-content-center">
+                  <Bar :data="data" :options='options'/>
+                </div>
+                <div class="total-income-wrapper text-center grid place-content-center">
+                  <div class=" px-5 border-black bg-red-400 rounded-xl grid place-content-center">
+                    <div class="grid-container-wrapper-label flex justify-center font-bold ">
+                      <p class="generated-report-label font-serif">
+                        Your Overall sales:
+                      </p>
+                    </div>
+                    <div class="grid-generated-sales-wrapper-value flex justify-center font-semibold text-white">
+                      <p class="generated-report">
+                        ₱ {{ total_rev.total_gross }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -15,9 +30,11 @@ import PocketBase from 'pocketbase';
 const pb = new PocketBase('https://ecom2024.pockethost.io/')
 
 const records = await pb.collection('dashboard_and_analytics').getFullList({
+})
+
+const transactions_tbl = await pb.collection('total_gross').getOne(1, {
 });
-
-
+console.log(transactions_tbl.total_gross);
 
 import {
   Chart as ChartJS,
@@ -42,6 +59,7 @@ export default {
   },
   data() {
     return {
+        total_rev: transactions_tbl,
         data: {
                 labels:['Delivered Items','Inventory Items', 'Transactions Occurred'],
                 datasets: [{ 
@@ -74,3 +92,14 @@ export default {
   }
 }
 </script>
+
+<style>
+  .generated-report {
+    font-family: 'Lumanisimo';
+    font-size: 40px;
+  }
+
+  .generated-report-label {
+    font-size: 30px;
+  }
+</style>
