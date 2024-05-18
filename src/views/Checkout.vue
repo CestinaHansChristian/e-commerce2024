@@ -94,7 +94,9 @@
                     "user_transac_id": pb.authStore.model.id,
                     "transac_mode_of_payment": this.paymentMethod,
                     "transac_total_price": this.secure_payment,
-                    "transac_drop_point": user_loc.address
+                    "transac_drop_point": user_loc.address,
+                    "transac_del_status": "pending",
+                    "transac_pay_status": "unpaid"
                 };
                 console.log(data);
 

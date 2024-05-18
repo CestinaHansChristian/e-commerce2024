@@ -43,7 +43,7 @@
                                     <div class="relative ">
                                         <div class="grid relative align-middle transaction-heading bg-slate-300 py-1 rounded-t-xl">
                                             <h1 class="sticky top-0 font-semibold">
-                                                Your Transaction History
+                                                Transaction and Delivery Status
                                             </h1>
                                         </div>
                                         <div class="transaction-body bg-slate-200 ">

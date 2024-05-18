@@ -1,9 +1,9 @@
 // vue router instance
 import { createRouter,createWebHistory } from 'vue-router'
 
-// pocketbase instance
-import PocketBase from 'pocketbase'
-const pb = new PocketBase('http://127.0.0.1:8090');
+// // pocketbase instance
+import PocketBase from 'pocketbase';
+const pb = new PocketBase('https://ecom2024.pockethost.io/')
 
 // view import
 import SignupForm from '@/views/SignupForm.vue';
@@ -11,6 +11,7 @@ import LoginForm from '@/views/LoginForm.vue';
 import HomewithCta from '@/views/HomewithCta.vue'
 import Products from '@/views/Products.vue';
 import ErrorPage from '@/views/ErrorPage.vue';
+import Analytics from '@/views/Analytics.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,11 @@ const router = createRouter({
             path: '/:pathMatch(.*)*',
             name: 'errorPage',
             component: ErrorPage
+        },
+        {
+            path: '/analytics',
+            name: 'analytics',
+            component: Analytics
         }
     ]
 })

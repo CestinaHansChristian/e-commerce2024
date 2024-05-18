@@ -24,13 +24,13 @@
                                 </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200">
                                     <div class="text-start ps-2 heading-label">
-                                        Paid via:
+                                        Payment Method:
                                     </div>
                                     <div class="heading">
                                         {{ record.transac_mode_of_payment }}
                                     </div>
                                 </div>
-                                <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-b-lg">
+                                <div class="card-heading grid grid-cols-2 bg-slate-200">
                                     <div class="text-start ps-2 heading-label">
                                         Drop point:
                                     </div>
@@ -38,13 +38,24 @@
                                         {{ record.transac_drop_point }}
                                     </div>
                                 </div>
+                                <div class="card-heading grid grid-cols-2 bg-slate-200">
+                                    <div class="text-start ps-2 heading-label">
+                                        Payment Status:
+                                    </div>
+                                    <div class="heading bg-green-400 font-bold" v-if="record.transac_pay_status == 'paid'" >
+                                        {{ record.transac_pay_status }}
+                                    </div>
+                                    <div class="heading bg-red-400 font-bold" v-else-if="record.transac_pay_status == 'unpaid'" >
+                                        {{ record.transac_pay_status }}
+                                    </div>
+                                </div>
                                 <div class="card-heading grid grid-cols-2 bg-slate-200 rounded-b-lg">
-                                    <!-- <div class="heading">
-                                        Phone number
+                                    <div class="text-start ps-2 heading-label">
+                                        Delivery Status:
                                     </div>
                                     <div class="heading">
-                                        {{ record.phone_num }}
-                                    </div> -->
+                                        {{ record.transac_del_status }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
