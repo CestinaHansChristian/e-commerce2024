@@ -51,6 +51,7 @@ import { Bar } from 'vue-chartjs'
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,Colors)
 
 ChartJS.defaults.font.size = 20;
+ChartJS.defaults.color = 'black'
 
 export default {
   name: 'Analytics',
@@ -61,33 +62,27 @@ export default {
     return {
         total_rev: transactions_tbl,
         data: {
-                labels:['Delivered Items','Inventory Items', 'Transactions Occurred'],
-                datasets: [{ 
-                    data: [records[0].total_delivered_products, records[0].total_products, records[0].total_transactions],
-                    label: 'Generated Report',
-                    backgroundColor: [
-                    'lime',
-                    'orange',
-                    'skyblue'
-                    ],
-                    borderColor: [
-                        'Black'
-                    ],
-                    
-                }],
+          labels:['Delivered Items','Items in Inventory', 'Transactions '],
+          datasets: [{ 
+            data: [records[0].total_delivered_products, records[0].total_products, records[0].total_transactions],
+            label: 'Report',
+            backgroundColor: [
+              'lime',
+              'orange',
+              'skyblue'
+            ],
+            color: 'red'
+          }],
         },
         options: {
-            responsive: true,
-            // plugins: {
-            //     legend: {
-            //         display: true,
-            //         labels: {
-            //             color: 'white',
-            //         },
-            //     },
-            // }
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Sales Report'
+            }
+          }
         },
-      borderWidth: 1
     }
   }
 }
